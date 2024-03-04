@@ -31,4 +31,15 @@ public class TaskController {
         return ResponseEntity.ok("Het is gelukt!");
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateTask(@PathVariable Long id,@RequestBody TaskDTO taskDTO){
+        this.taskDAO.updateTaskByID(id, taskDTO);
+        return ResponseEntity.ok("Updated task with id " + id);
+    }
+
+    @PutMapping("/check/{id}")
+    public ResponseEntity<String> checkTask(@PathVariable Long id){
+        this.taskDAO.checkTask(id);
+        return ResponseEntity.ok("Finished task with id " + id);
+    }
 }
