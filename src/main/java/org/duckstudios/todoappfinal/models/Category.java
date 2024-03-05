@@ -1,5 +1,6 @@
 package org.duckstudios.todoappfinal.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,6 +18,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @JsonManagedReference
     private List<Task> tasks;
 
 
@@ -41,5 +43,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

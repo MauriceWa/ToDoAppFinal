@@ -1,9 +1,8 @@
 package org.duckstudios.todoappfinal.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 @Entity
 public class Task {
@@ -14,12 +13,18 @@ public class Task {
     private String description;
     private boolean isFinished = false;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonBackReference
+    private Category category;
+
     public Task() {
     }
 
-    public Task(String name, String description) {
+
+    public Task(String name, String description, Category category) {
         this.name = name;
         this.description = description;
+        this.category = category;
     }
 
     public void setId(long id) {
