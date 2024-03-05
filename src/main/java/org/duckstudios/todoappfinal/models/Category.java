@@ -3,6 +3,9 @@ package org.duckstudios.todoappfinal.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Category {
@@ -13,6 +16,8 @@ public class Category {
 
     private String name;
 
+    @OneToMany(mappedBy = "category")
+    private List<Task> tasks;
 
 
     public Category(String name) {
